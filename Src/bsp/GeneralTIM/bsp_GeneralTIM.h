@@ -62,16 +62,15 @@
 #define GENERAL_TIM_PRESCALER            35  // 实际时钟频率为：2MHz
 
 // 定义定时器周期，当定时器开始计数到GENERAL_TIMx_PERIOD值是更新定时器并生成对应事件和中断
-#define GENERAL_TIM_PERIOD               400  // 定时器产生中断频率为：2MHz/400=5KHz，即0.5ms定时周期
+#define GENERAL_TIM_PERIOD               400  // 定时器产生中断频率为：2MHz/400=5KHz，即0.2ms定时周期
 
-#define GENERAL_TIM_CH1_PULSE            400   // 定时器通道1占空比为：GENERAL_TIM_CH1_PULSE/GENERAL_TIM_PERIOD*100%=900/1000*100%=90%
-#define GENERAL_TIM_CH2_PULSE            300   // 定时器通道2占空比为：GENERAL_TIM_CH2_PULSE/GENERAL_TIM_PERIOD*100%=600/1000*100%=60%
-
-#define GENERAL_TIM_CH3_PULSE            300   // 定时器通道3占空比为：GENERAL_TIM_CH3_PULSE/GENERAL_TIM_PERIOD*100%=300/1000*100%=30%
-#define GENERAL_TIM_CH4_PULSE            300    // 定时器通道4占空比为：GENERAL_TIM_CH4_PULSE/GENERAL_TIM_PERIOD*100%=100/1000*100%=10%
+#define GENERAL_TIM_CH1_PULSE            900   // 定时器通道1占空比为：GENERAL_TIM_CH1_PULSE/GENERAL_TIM_PERIOD*100%=900/1000*100%=90%
+#define GENERAL_TIM_CH2_PULSE            600   // 定时器通道2占空比为：GENERAL_TIM_CH2_PULSE/GENERAL_TIM_PERIOD*100%=600/1000*100%=60%
+#define GENERAL_TIM_CH3_PULSE            GENERAL_TIM_PERIOD-1   // 定时器通道3占空比为：GENERAL_TIM_CH3_PULSE/GENERAL_TIM_PERIOD*100%=300/1000*100%=30%
+#define GENERAL_TIM_CH4_PULSE            GENERAL_TIM_PERIOD-1   // 定时器通道4占空比为：GENERAL_TIM_CH4_PULSE/GENERAL_TIM_PERIOD*100%=100/1000*100%=10%
 
 /* 扩展变量 ------------------------------------------------------------------*/
-extern TIM_HandleTypeDef G_htimx;
+extern TIM_HandleTypeDef htimx;
 
 /* 函数声明 ------------------------------------------------------------------*/
 void GENERAL_TIMx_Init(void);

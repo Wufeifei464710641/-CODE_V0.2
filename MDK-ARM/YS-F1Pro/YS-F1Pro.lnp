@@ -53,6 +53,10 @@
 "ys-f1pro\bsp_debug_usart.o"
 "ys-f1pro\bsp_generaltim.o"
 "ys-f1pro\bsp_advancedtim.o"
+"ys-f1pro\cr4_fft_256_stm32.o"
+"ys-f1pro\cr4_fft_1024_stm32.o"
+"..\Drivers\CMSIS\Lib\ARM\arm_cortexM3l_math.lib"
+"..\Drivers\CMSIS\Lib\ARM\arm_cortexM3b_math.lib"
 --library_type=microlib --strict --scatter "YS-F1Pro\YS-F1Pro.sct"
 --diag_suppress=L6329 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

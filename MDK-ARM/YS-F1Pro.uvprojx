@@ -134,14 +134,14 @@
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
             <Capability>1</Capability>
-            <DriverSelection>4103</DriverSelection>
+            <DriverSelection>4096</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3></Flash3>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
-          <pFcarmGrp></pFcarmGrp>
+          <pFcarmGrp>Readme</pFcarmGrp>
           <pFcArmRoot></pFcArmRoot>
           <FcArmLst>0</FcArmLst>
         </Utilities>
@@ -338,7 +338,7 @@
               <MiscControls>--C99</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F103xE</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/CMSIS/Include;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;..\Inc\bsp;..\Src\bsp</IncludePath>
+              <IncludePath>../Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/CMSIS/Include;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;..\Inc\bsp;..\Src\bsp;..\Src\STM32_FFT;..\Src\STM32_FFT\Include;..\Drivers\CMSIS\Lib;..\Drivers\CMSIS\Lib\ARM</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -633,19 +633,9 @@
               <FilePath>../Src/stm32f1xx_hal_msp.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f1xx_hal_conf.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Inc\stm32f1xx_hal_conf.h</FilePath>
-            </File>
-            <File>
               <FileName>stm32f1xx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Src/stm32f1xx_it.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f1xx_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Inc\stm32f1xx_it.h</FilePath>
             </File>
             <File>
               <FileName>stm32f1xx_assert.c</FileName>
@@ -663,19 +653,9 @@
               <FilePath>..\Src\bsp\led\bsp_led.c</FilePath>
             </File>
             <File>
-              <FileName>bsp_led.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Src\bsp\led\bsp_led.h</FilePath>
-            </File>
-            <File>
               <FileName>bsp_adc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\bsp\adc\bsp_adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>bsp_adc.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Src\bsp\adc\bsp_adc.h</FilePath>
             </File>
             <File>
               <FileName>bsp_debug_usart.c</FileName>
@@ -683,29 +663,49 @@
               <FilePath>..\Src\bsp\usart\bsp_debug_usart.c</FilePath>
             </File>
             <File>
-              <FileName>bsp_debug_usart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Src\bsp\usart\bsp_debug_usart.h</FilePath>
-            </File>
-            <File>
               <FileName>bsp_GeneralTIM.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\bsp\GeneralTIM\bsp_GeneralTIM.c</FilePath>
-            </File>
-            <File>
-              <FileName>bsp_GeneralTIM.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Src\bsp\GeneralTIM\bsp_GeneralTIM.h</FilePath>
             </File>
             <File>
               <FileName>bsp_AdvancedTIM.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\bsp\AdvancedTIM\bsp_AdvancedTIM.c</FilePath>
             </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Dsp</GroupName>
+          <Files>
             <File>
-              <FileName>bsp_AdvancedTIM.h</FileName>
+              <FileName>cr4_fft_256_stm32.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>..\Src\STM32_FFT\cr4_fft_256_stm32.s</FilePath>
+            </File>
+            <File>
+              <FileName>cr4_fft_1024_stm32.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>..\Src\STM32_FFT\cr4_fft_1024_stm32.s</FilePath>
+            </File>
+            <File>
+              <FileName>stm32_dsp.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\Src\bsp\AdvancedTIM\bsp_AdvancedTIM.h</FilePath>
+              <FilePath>..\Src\STM32_FFT\stm32_dsp.h</FilePath>
+            </File>
+            <File>
+              <FileName>table_fft.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Src\STM32_FFT\table_fft.h</FilePath>
+            </File>
+            <File>
+              <FileName>arm_cortexM3l_math.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>..\Drivers\CMSIS\Lib\ARM\arm_cortexM3l_math.lib</FilePath>
+            </File>
+            <File>
+              <FileName>arm_cortexM3b_math.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>..\Drivers\CMSIS\Lib\ARM\arm_cortexM3b_math.lib</FilePath>
             </File>
           </Files>
         </Group>
@@ -731,7 +731,26 @@
   <RTE>
     <apis/>
     <components/>
-    <files/>
+    <files>
+      <file attr="config" category="header" name="RTE_Driver\Config\RTE_Device.h" version="1.1.2">
+        <instance index="0" removed="1">RTE\Device\STM32F103C8\RTE_Device.h</instance>
+        <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32F1xx CMSIS"/>
+        <package name="STM32F1xx_DFP" schemaVersion="1.4.0" url="http://www.keil.com/pack/" vendor="Keil" version="2.3.0"/>
+        <targetInfos/>
+      </file>
+      <file attr="config" category="source" condition="STM32F1xx MD ARMCC" name="Device\Source\ARM\startup_stm32f10x_md.s" version="1.0.0">
+        <instance index="0" removed="1">RTE\Device\STM32F103C8\startup_stm32f10x_md.s</instance>
+        <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32F1xx CMSIS"/>
+        <package name="STM32F1xx_DFP" schemaVersion="1.4.0" url="http://www.keil.com/pack/" vendor="Keil" version="2.3.0"/>
+        <targetInfos/>
+      </file>
+      <file attr="config" category="source" name="Device\Source\system_stm32f10x.c" version="1.0.0">
+        <instance index="0" removed="1">RTE\Device\STM32F103C8\system_stm32f10x.c</instance>
+        <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32F1xx CMSIS"/>
+        <package name="STM32F1xx_DFP" schemaVersion="1.4.0" url="http://www.keil.com/pack/" vendor="Keil" version="2.3.0"/>
+        <targetInfos/>
+      </file>
+    </files>
   </RTE>
 
 </Project>

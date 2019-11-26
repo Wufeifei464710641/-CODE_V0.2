@@ -20,7 +20,7 @@
 /* 私有类型定义 --------------------------------------------------------------*/
 /* 私有宏定义 ----------------------------------------------------------------*/
 /* 私有变量 ------------------------------------------------------------------*/
-TIM_HandleTypeDef G_htimx;
+TIM_HandleTypeDef htimx;
 
 /* 扩展变量 ------------------------------------------------------------------*/
 /* 私有函数原形 --------------------------------------------------------------*/
@@ -38,7 +38,7 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef* htim)
   {  
     /* 定时器通道功能引脚端口时钟使能 */
     GENERAL_TIM_GPIO_RCC_CLK_ENABLE();
-
+    
     /* 定时器通道3功能引脚IO初始化 */
     GPIO_InitStruct.Pin = GENERAL_TIM_CH3_PIN;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
@@ -65,60 +65,30 @@ void GENERAL_TIMx_Init(void)
   TIM_MasterConfigTypeDef sMasterConfig;
   TIM_OC_InitTypeDef sConfigOC;
   
-  G_htimx.Instance = GENERAL_TIMx;
-  G_htimx.Init.Prescaler = GENERAL_TIM_PRESCALER;
-  G_htimx.Init.CounterMode = TIM_COUNTERMODE_UP;
-  G_htimx.Init.Period = GENERAL_TIM_PERIOD;
-  G_htimx.Init.ClockDivision=TIM_CLOCKDIVISION_DIV1;
-  HAL_TIM_Base_Init(&G_htimx);
+  htimx.Instance = GENERAL_TIMx;
+  htimx.Init.Prescaler = GENERAL_TIM_PRESCALER;
+  htimx.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htimx.Init.Period = GENERAL_TIM_PERIOD;
+  htimx.Init.ClockDivision=TIM_CLOCKDIVISION_DIV1;
+  HAL_TIM_Base_Init(&htimx);
 
   sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-  HAL_TIM_ConfigClockSource(&G_htimx, &sClockSourceConfig);
+  HAL_TIM_ConfigClockSource(&htimx, &sClockSourceConfig);
 
   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  HAL_TIMEx_MasterConfigSynchronization(&G_htimx, &sMasterConfig);
+  HAL_TIMEx_MasterConfigSynchronization(&htimx, &sMasterConfig);
   
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
+  sConfigOC.Pulse = GENERAL_TIM_CH3_PULSE;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-
-  sConfigOC.Pulse = GENERAL_TIM_CH3_PULSE;
-  HAL_TIM_PWM_ConfigChannel(&G_htimx, &sConfigOC, TIM_CHANNEL_3);
-
+  HAL_TIM_PWM_ConfigChannel(&htimx, &sConfigOC, TIM_CHANNEL_3);
+	
   sConfigOC.Pulse = GENERAL_TIM_CH4_PULSE;
-  HAL_TIM_PWM_ConfigChannel(&G_htimx, &sConfigOC, TIM_CHANNEL_4);
+  HAL_TIM_PWM_ConfigChannel(&htimx, &sConfigOC, TIM_CHANNEL_4);
 
-  HAL_TIM_MspPostInit(&G_htimx);
+  HAL_TIM_MspPostInit(&htimx);
 }
 
-/**
-  * 函数功能: 基本定时器硬件初始化配置
-  * 输入参数: htim_base：基本定时器句柄类型指针
-  * 返 回 值: 无
-  * 说    明: 该函数被HAL库内部调用
-  */
-void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
-{
-	if(htim_base->Instance==GENERAL_TIMx)
-		{
-			/* 基本定时器外设时钟使能 */
-			GENERAL_TIM_RCC_CLK_ENABLE();
-		}
-}
-
-/**
-  * 函数功能: 基本定时器硬件反初始化配置
-  * 输入参数: htim_base：基本定时器句柄类型指针
-  * 返 回 值: 无
-  * 说    明: 该函数被HAL库内部调用
-  */
-void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* htim_base)
-{
-	if(htim_base->Instance==GENERAL_TIMx)
-  {
-    /* 基本定时器外设时钟禁用 */
-    GENERAL_TIM_RCC_CLK_DISABLE();
-  }
-} 
 /******************* (C) COPYRIGHT 2015-2020 硬石嵌入式开发团队 *****END OF FILE****/

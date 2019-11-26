@@ -37,6 +37,7 @@
 
 /* USER CODE BEGIN 0 */
 #include "adc/bsp_adc.h"
+#include "AdvancedTIM/bsp_AdvancedTIM.h" 
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
@@ -67,9 +68,9 @@ void HardFault_Handler(void)
   /* USER CODE BEGIN HardFault_IRQn 0 */
 
   /* USER CODE END HardFault_IRQn 0 */
-  while (1)
-  {
-  }
+//  while (1)
+//  {
+//  }
   /* USER CODE BEGIN HardFault_IRQn 1 */
 
   /* USER CODE END HardFault_IRQn 1 */
@@ -173,6 +174,32 @@ void ADC_DMAx_CHANNELn_IRQHANDLER(void)
   /* USER CODE BEGIN DMA1_Channel1_IRQn 1 */
 
   /* USER CODE END DMA1_Channel1_IRQn 1 */
+}
+/**
+* @brief This function handles TIM1 update interrupt.
+*/
+void ADVANCED_TIM_UP_IRQ_FUN(void)
+{
+  /* USER CODE BEGIN TIM1_UP_IRQn 0 */
+
+  /* USER CODE END TIM1_UP_IRQn 0 */
+  HAL_TIM_IRQHandler(&A_htimx);
+  /* USER CODE BEGIN TIM1_UP_IRQn 1 */
+
+  /* USER CODE END TIM1_UP_IRQn 1 */
+}
+/**
+* @brief This function handles ADC1 and ADC2 global interrupts.
+*/
+void ADCx_IRQHandler(void)
+{
+  /* USER CODE BEGIN ADC1_2_IRQn 0 */
+
+  /* USER CODE END ADC1_2_IRQn 0 */
+  HAL_ADC_IRQHandler(&hadcx3);
+  /* USER CODE BEGIN ADC1_2_IRQn 1 */
+
+  /* USER CODE END ADC1_2_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */
